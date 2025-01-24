@@ -1,58 +1,4 @@
-// // navbar
-// const hamburgerMenu = document.getElementById('hamburgerMenu');
-//     const sidebar = document.getElementById('sidebar');
-//     const overlay = document.getElementById('overlay');
-
-//     hamburgerMenu.addEventListener('click', () => {
-//       sidebar.classList.add('open');
-//       overlay.classList.add('visible');
-//     });
-
-//     overlay.addEventListener('click', () => {
-//       sidebar.classList.remove('open');
-//       overlay.classList.remove('visible');
-//     });
-
-
-// // carousel.js
-
-
-// // fetched data
-
-// async function fetchData() {
-//   let response = await fetch("http://localhost:3000/product");
-//   try {
-//     if (!response.ok) {
-//       throw new Error("Failed to fetch");
-//     }
-//   } catch (error) {
-//     console.log(error);
-//   }
-//   let data = await response.json();
-//   console.log(data);
-//   getData(data);
-// }
-
-
-
-// //get data
-// function getData(data) {
-//   let container = document.getElementById("container");
-//   data.forEach(element => {
-//     let ParentDiv = document.createElement("div");
-//     ParentDiv.classList.add("product");
-//     ParentDiv.innerHTML = `
-//       <img src='${element.image}' alt='${element.title}' class='product-image'>
-//       <h1 class='product-title'>${element.title}</h1>
-//       <p class='product-price'>Price: ${element.price}/-</p>
-//       <button class='add-to-cart-btn'>Add To Cart</button>
-//       <button class='buy-btn'>Buy</button>
-//     `;
-//     container.appendChild(ParentDiv);
-//   });
-// }
-
-// fetchData();// Navbar
+// Navbar
 const hamburgerMenu = document.getElementById('hamburgerMenu');
 const sidebar = document.getElementById('sidebar');
 const overlay = document.getElementById('overlay');
@@ -67,8 +13,13 @@ overlay.addEventListener('click', () => {
   overlay.classList.remove('visible');
 });
 
+
 // Fetch data
 async function fetchData() {
+  // loader
+  const loader = document.getElementById("loader");
+  loader.style.display = "block"; // Show loader
+
   let response = await fetch("https://tortoiseshell-lime-town.glitch.me/product");
   try {
     if (!response.ok) {
@@ -78,7 +29,8 @@ async function fetchData() {
     console.log(error);
   }
   let data = await response.json();
-  console.log(data);
+  loader.style.display = "none"; // Hide loader after fetching data
+ 
   getData(data);
 }
 
